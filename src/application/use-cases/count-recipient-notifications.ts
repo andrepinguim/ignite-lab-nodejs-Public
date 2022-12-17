@@ -11,13 +11,13 @@ interface CountRecipientNotificationsResponse {
 
 @Injectable()
 export class CountRecipientNotifications {
-    constructor(private notificationRepository: NotificationsRepository) { }
+    constructor(private notificationsRepository: NotificationsRepository) { }
 
     async execute(request: CountRecipientNotificationsRequest): Promise<CountRecipientNotificationsResponse> {
         const { recipientId } = request;
 
-        const count = await this.notificationRepository.countManyByRecipientId(recipientId);
+        const count = await this.notificationsRepository.countManyByRecipientId(recipientId);
 
-        return {count};
+        return { count };
     }
 }
