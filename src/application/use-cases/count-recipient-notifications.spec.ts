@@ -6,7 +6,7 @@ describe('Count recipient notifications', () => {
     it('should be able to count recipient Notifications', async () => {
         const notificationsRepository = new InMemoryNotificationsRepository();
         const countRecipientNotifications = new CountRecipientNotifications(notificationsRepository);
-        const recipientIdTest:string = 'recipient-1';
+        const recipientIdTest: string = 'recipient-1';
 
         await notificationsRepository.create(makeNotification({ recipientId: recipientIdTest }));
         await notificationsRepository.create(makeNotification({ recipientId: recipientIdTest }));
