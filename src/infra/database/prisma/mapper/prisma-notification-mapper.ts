@@ -1,7 +1,10 @@
+import { Content } from "@application/entities/content";
 import { Notification } from "@application/entities/notifications";
+import { Notification as RawNotification } from "@prisma/client";
+
 
 export class prismaNotificationMapper {
-    static toPrisma(notification: Notification){
+    static toPrisma(notification: Notification) {
         return {
             id: notification.id,
             category: notification.category,
@@ -10,5 +13,16 @@ export class prismaNotificationMapper {
             readAt: notification.readAt,
             createdAt: notification.createdAt,
         }
+    }
+
+    static toDomain(raw: RawNotification): Notification {
+        return new Notification({
+            category: raw.category,
+            content: new Content(raw.content),
+            recipientId: raw.recipientId,
+            readAt: raw.readAt,
+            createdAt: raw.createdAt,
+        },
+        raw.id);
     }
 }
