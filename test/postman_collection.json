@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "493cbc9a-0274-4681-b7ff-2c6b33920476",
+		"name": "IgniteLab-Nestjs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "164329"
+	},
+	"item": [
+		{
+			"name": "Create notification",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"notificationId\", jsonData.notification.id);\r",
+							"pm.collectionVariables.set(\"recipientId\", jsonData.notification.recipientId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipientId\": \"8122af14-42ab-4d2c-b7aa-cd66a6a2422c\",\r\n    \"content\": \"teste 123 uhull\",\r\n    \"category\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/notifications",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Count from recipient",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipientId\": \"{{$guid}}\",\r\n    \"content\": \"teste 123 uhull\",\r\n    \"category\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/notifications/count/from/{{recipientId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"notifications",
+						"count",
+						"from",
+						"{{recipientId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get from recipient",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipientId\": \"{{$guid}}\",\r\n    \"content\": \"teste 123 uhull\",\r\n    \"category\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/notifications/from/{{recipientId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"notifications",
+						"from",
+						"{{recipientId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel notifications",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/notifications/{{notificationId}}/cancel",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"notifications",
+						"{{notificationId}}",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read notifications",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/notifications/{{notificationId}}/read",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"notifications",
+						"{{notificationId}}",
+						"read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unread notifications",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/notifications/{{notificationId}}/unread",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"notifications",
+						"{{notificationId}}",
+						"unread"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "notificationId",
+			"value": "0",
+			"type": "string"
+		},
+		{
+			"key": "recipientId",
+			"value": "0",
+			"type": "string"
+		}
+	]
+}
